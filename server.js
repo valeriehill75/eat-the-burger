@@ -1,4 +1,4 @@
-const express = required("express");
+const express = require("express");
 
 const PORT = process.env.PORT || 8080;
 
@@ -17,7 +17,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
 //Import routes/give server access.
-const routes = require(".controllers/burgerControllers.js");
+const routes = require("./controllers/burgers_controller.js");
 
 app.use(routes);
 

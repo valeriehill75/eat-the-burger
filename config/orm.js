@@ -17,7 +17,7 @@ function objToSql(ob) {
   const arr = [];
 
   //loop through keys and push key/value as a string into array
-  for (var key in ob) {
+  for (const key in ob) {
     const value = ob[key];
     //check to skip hidden properties.
     if (Object.hasOwnProperty.call(ob, key)) {
@@ -33,16 +33,19 @@ function objToSql(ob) {
 
 //Object for all our SQL statement functions.
 const orm = {
-  all: function (tableInput, cb) {
-    const queryString = "SELECT * FROM " + tableInput + ";";
-    connection.query(queryString, function (err, result) {
-      if (err) {
-        throw err;
-      }
-      cb(result);
+  all(tableInput) {
+    return new Promise((resolve, reject) => {
+      const queryString = "SELECT * FROM ??;";
+      connection.query(queryString, [tableInput], (err, result) => {
+        if (err) {
+          reject(err);
+        }
+      resolve(result);
+      });
     });
   },
-  create: function(table, cols, vals, cb) {
+  create(table, cols, vals) {
+    return new Promise((resolve, reject) => {
       const queryString = "INSERT INTO " + table;
 
       queryString += " (";
@@ -56,14 +59,16 @@ const orm = {
 
       connection.query(queryString, vals, function(err, result) {
           if (err) {
-              throw err;
+              reject(err);
           }
 
-          cb(result);
+          resolve(result);
       });
+    });
   },
 
-  update: function(table, objColVals, condition, cb) {
+  update(table, objColVals, condition) {
+    return new Promise((resolve, reject) => {
       const queryString = "UPDATE " + table;
 
       queryString += " SET ";
@@ -72,27 +77,31 @@ const orm = {
       queryString += condition;
 
       console.log(queryString);
-      connection.query(queryString, function(err, result) {
+      connection.query(queryString, (err, result) => {
           if (err) {
-              throw err;
+            reject(err);
           }
 
-          cb (result);
+          resolve(result);
       });
+    });
   },
-  delete: function(table, condition, cb) {
+
+  delete(table, condition) {
+    return new Promise((resolve, reject) => 
       const queryString = "DELETE FROM " + table;
       queryString += " WHERE ";
       queryString += condition;
 
-      connection.query(queryString, function(err, result) {
+      connection.query(queryString, (err, result) => {
           if (err) {
-              throw err;
+              reject(err);
           }
 
-          cb(result);
+          resolve(result);
       });
-  }
+    });
+  },
 };
 
 //Export orm object for the model

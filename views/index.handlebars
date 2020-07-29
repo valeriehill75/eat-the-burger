@@ -21,12 +21,12 @@
 </ul>
 
 <h2>Add a Burger</h2>
-<form class="create-form">
+<form class="create-form" action="/api/burgers" method="post">
 
   <div class="form-group">
     <label for="burgerAdd">Order your Burger:</label>
-    <input type="text" id="burgerAdd" name="name">
+    <input type="text" id="burger-input" name="burgerName">
+    <button type="submit" class= "create-burger">Add Burger</button>
   </div>
 
-  <button type="submit">Add Burger</button>
 </form>
