@@ -33,7 +33,7 @@ function objToSql(ob) {
 
 //Object for all our SQL statement functions.
 const orm = {
-  all(tableInput) {
+  selectAll(tableInput) {
     return new Promise((resolve, reject) => {
       const queryString = "SELECT * FROM ??;";
       connection.query(queryString, [tableInput], (err, result) => {
@@ -44,7 +44,7 @@ const orm = {
       });
     });
   },
-  create(table, cols, vals) {
+  insertOne(table, cols, vals) {
     return new Promise((resolve, reject) => {
       const queryString = "INSERT INTO " + table;
 
@@ -67,7 +67,7 @@ const orm = {
     });
   },
 
-  update(table, objColVals, condition) {
+  updateOne(table, objColVals, condition) {
     return new Promise((resolve, reject) => {
       const queryString = "UPDATE " + table;
 
@@ -80,22 +80,6 @@ const orm = {
       connection.query(queryString, (err, result) => {
           if (err) {
             reject(err);
-          }
-
-          resolve(result);
-      });
-    });
-  },
-
-  delete(table, condition) {
-    return new Promise((resolve, reject) => 
-      const queryString = "DELETE FROM " + table;
-      queryString += " WHERE ";
-      queryString += condition;
-
-      connection.query(queryString, (err, result) => {
-          if (err) {
-              reject(err);
           }
 
           resolve(result);
