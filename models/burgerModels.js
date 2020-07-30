@@ -2,15 +2,15 @@
 const orm = require("../config/orm.js");
 
 const burger = {
-    selectAll() {
-        return orm.all("burgers")
+    all() {
+        return orm.selectAll();
     },
     //Variable, Cols, and Vals as Arrays.
-    insertOne(cols, vals) {
-        return orm.create("bugers", cols, vals);
+    create(burger_name) {
+        return orm.insertOne(burger_name);
     },
-    updateOne(objColVals, condition) {
-        return orm.update("burgers", objColVals, condition);
+    update(condition) {
+        return orm.updateOne(condition);
     },
 };
 

@@ -1,32 +1,37 @@
-<h1>Eat the Burger</h1>
+<div class="jumbotron text-center">
+  <h1>Eat the Burger</h1>
+  <h2>Order a burger or eat a burger that's ready to eat!</h2>
+</div>
 
-<h2>Burgers Ready to Eat!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#if readyToEat}}
-      {{> burgers/burger-block readyToEat=true}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Burgers You've Eaten!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#unless readyToEat}}
-      {{> burgers/burger-block readyToEat=false}}
-    {{/unless}} --}}
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="create-form" action="/api/burgers" method="post">
-
-  <div class="form-group">
-    <label for="burgerAdd">Order your Burger:</label>
-    <input type="text" id="burger-input" name="burgerName">
-    <button type="submit" class= "create-burger">Add Burger</button>
+<div class="container">
+  <div class="row d-flex justify-content-around">
+    <div class="col-6">
+      <ul>
+        {{#each burgers}}
+          {{#unless devoured}}
+            {{> burgers/readyToEat devoured=false}}
+          {{/unless}}
+        {{/each}}
+      </ul>
+    </div> 
+    <div class="col-6">
+      <ul>
+        {{#each burgers}}
+          {{#if devoured}}
+            {{> burgers/devoured devoured=true}}
+          {{/unless}}
+        {{/each}}
+      </ul>    
+    </div>
   </div>
+  <div class="row d-flex mt-3 justify-content-center">
+    <form class="create-form">
 
-</form>
+      <div class="form-group col text-center">
+        <label for="burgerAdd">Order your Burger:</label>
+        <textarea class="form-control row mb-3" type="text" id="burger-input" name="burgerName" cols="50" rows="3"></textarea>
+        <button type="submit" class= "btn btn-info row mb-3">Add Burger</button>
+      </div>
+
+    </form>
+</div>
