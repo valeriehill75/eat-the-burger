@@ -4,9 +4,9 @@
 
 <ul>
   {{#each burgers}}
-    {{!-- {{#unless sleepy}}
-      {{> cats/cat-block sleep=true}}
-    {{/unless}} --}}
+    {{#if readyToEat}}
+      {{> burgers/burger-block readyToEat=true}}
+    {{/if}}
   {{/each}}
 </ul>
 
@@ -14,9 +14,9 @@
 
 <ul>
   {{#each burgers}}
-    {{!-- {{#if sleepy}}
-      {{> cats/cat-block sleep=false}}
-    {{/if}} --}}
+    {{#unless readyToEat}}
+      {{> burgers/burger-block readyToEat=false}}
+    {{/unless}} --}}
   {{/each}}
 </ul>
 
