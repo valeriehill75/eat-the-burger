@@ -15,7 +15,7 @@
       </ul>
     </div> 
     <div class="col-6">
-      <ul>
+      <ul class="list-group">
         {{#each burgers}}
           {{#if devoured}}
             {{> burgers/devoured devoured=true}}
@@ -29,7 +29,7 @@
 
       <div class="form-group col text-center">
         <label for="burgerAdd">Order your Burger:</label>
-        <textarea class="form-control row mb-3" type="text" id="burger-input" name="burgerName" cols="50" rows="3"></textarea>
+        <textarea class="form-control row mb-3" type="text" id="burger-input" name="burger-input" cols="50" rows="3"></textarea>
         <button type="submit" class= "btn btn-info row mb-3">Add Burger</button>
       </div>
 
