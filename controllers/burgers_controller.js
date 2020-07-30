@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 //Import the model
-const burgers = require("../models/burgerModels.js");
+const burger = require("../models/burgerModels.js");
 
 //Create routes
 router.get("/", async (_, res) => {

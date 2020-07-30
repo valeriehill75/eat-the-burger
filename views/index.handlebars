@@ -1,6 +1,6 @@
 <div class="jumbotron text-center">
   <h1>Eat the Burger</h1>
-  <h2>Order a burger or eat a burger that's ready to eat!</h2>
+  <h2>Order a burger or eat a burger that's ready!</h2>
 </div>
 
 <div class="container">
@@ -19,13 +19,13 @@
         {{#each burgers}}
           {{#if devoured}}
             {{> burgers/devoured devoured=true}}
-          {{/unless}}
+          {{/if}}
         {{/each}}
       </ul>    
     </div>
   </div>
   <div class="row d-flex mt-3 justify-content-center">
-    <form class="create-form">
+    <form class="create-burger">
 
       <div class="form-group col text-center">
         <label for="burgerAdd">Order your Burger:</label>
